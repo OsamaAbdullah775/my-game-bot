@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بوت الألعاب التفاعلي</title>
+<style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #f4f4f4; padding: 20px; }
+    h1 { color: #333; }
+    .stats { margin: 20px 0; font-size: 18px; }
+    button { 
+        display: inline-block; margin: 10px; padding: 15px 25px; 
+        font-size: 16px; cursor: pointer; border-radius: 8px; border: none; 
+        background-color: #4CAF50; color: white; transition: 0.3s;
+    }
+    button:hover { background-color: #45a049; }
+</style>
+</head>
+<body>
 
+<h1>بوت الألعاب التفاعلي</h1>
+
+<div class="stats">
+    <p>⭐ النجوم: <span id="stars">156</span></p>
+    <p>⚡ الطاقة: <span id="energy">1</span></p>
+</div>
+
+<div>
+    <button onclick="play()">🎮 اللعب</button>
+    <button onclick="friends()">🤝 الأصدقاء</button>
+    <button onclick="withdraw()">💰 السحب</button>
+    <button onclick="spin()">🎲 الدوران</button>
+</div>
+
+<script>
+let stars = 156;
+let energy = 1;
+
+function updateStats() {
+    document.getElementById('stars').innerText = stars;
+    document.getElementById('energy').innerText = energy;
+}
+
+function play() {
+    if(energy > 0) {
+        energy--;
+        stars += 10;
+        alert("تم اللعب! +10 نجوم، -1 طاقة");
+    } else {
+        alert("ليس لديك طاقة كافية!");
+    }
+    updateStats();
+}
+
+function friends() {
+    alert("تم فتح قائمة الأصدقاء!");
+}
+
+function withdraw() {
+    alert("تم طلب السحب!");
+}
+
+function spin() {
+    if(energy > 0) {
+        energy--;
+        let gained = Math.floor(Math.random() * 50) + 1;
+        stars += gained;
+        alert(`تمت عملية الدوران! +${gained} نجوم، -1 طاقة`);
+    } else {
+        alert("ليس لديك طاقة كافية!");
+    }
+    updateStats();
+}
+
+updateStats();
+</script>
+
+</body>
+</html>
